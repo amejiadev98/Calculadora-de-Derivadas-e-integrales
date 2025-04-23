@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Cálculo</title>
+</head>
+<body>
+    <h1>Calculadora de Derivadas e Integrales</h1>
+    <form method="post">
+        <label>Función (en x):</label><br>
+        <input type="text" name="function" required><br><br>
+
+        <label>Operación:</label><br>
+        <select name="operation">
+            <option value="derivar">Derivada</option>
+            <option value="integrar">Integral</option>
+        </select><br><br>
+
+        <input type="submit" value="Calcular">
+    </form>
+
+    {% if result %}
+        <h2>Resultado:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>
