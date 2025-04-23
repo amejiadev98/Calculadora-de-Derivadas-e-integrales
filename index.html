@@ -11,10 +11,24 @@
         <input type="text" name="function" required><br><br>
 
         <label>Operación:</label><br>
-        <select name="operation">
+        <select name="operation" id="operation" onchange="toggleLimits()">
             <option value="derivar">Derivada</option>
-            <option value="integrar">Integral</option>
+            <option value="integrar">Integral Indefinida</option>
+            <option value="integrar_definida">Integral Definida</option>
+            <option value="simplificar">Simplificar</option>
         </select><br><br>
+
+        <div id="orderDiv" style="display: none;">
+            <label>Orden de derivada:</label><br>
+            <input type="number" name="order" value="1" min="1"><br><br>
+        </div>
+
+        <div id="limitsDiv" style="display: none;">
+            <label>Límite inferior:</label><br>
+            <input type="text" name="lower_limit"><br>
+            <label>Límite superior:</label><br>
+            <input type="text" name="upper_limit"><br><br>
+        </div>
 
         <input type="submit" value="Calcular">
     </form>
@@ -23,5 +37,16 @@
         <h2>Resultado:</h2>
         <p>{{ result }}</p>
     {% endif %}
+
+    <script>
+        function toggleLimits() {
+            const op = document.getElementById("operation").value;
+            document.getElementById("orderDiv").style.display = (op === "derivar") ? "block" : "none";
+            document.getElementById("limitsDiv").style.display = (op === "integrar_definida") ? "block" : "none";
+        }
+
+        window.onload = toggleLimits;
+    </script>
 </body>
 </html>
+
